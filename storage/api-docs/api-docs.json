@@ -1,0 +1,148 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Vtiger API",
+        "description": "API documentation for your Vtiger application",
+        "contact": {
+            "email": "your-email@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/vtiger/v1/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "User login",
+                "operationId": "7641121aec2ed8cf4ef37172d2e454e8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "_operation",
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "_operation": {
+                                        "type": "string",
+                                        "example": "login"
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/vtiger/v1/search": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Search records in Vtiger",
+                "description": "Search Records in Vtiger",
+                "operationId": "c834be441df0f5efe8482681d06ce9fd",
+                "parameters": [
+                    {
+                        "name": "_operation",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "SearchRecord"
+                    },
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "search_module",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    },
+                    {
+                        "name": "search_value",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": ""
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "sessionAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            },
+            "sessionAuth": {
+                "type": "apiKey",
+                "description": "Session ID for authentication",
+                "name": "PHPSESSID",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Login",
+            "description": "Login"
+        },
+        {
+            "name": "Search",
+            "description": "Search"
+        }
+    ]
+}
